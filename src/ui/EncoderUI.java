@@ -1,5 +1,8 @@
 package ui;
 
+import domain.CeasarEncoder;
+import domain.EncoderContext;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -29,7 +32,8 @@ public class EncoderUI {
             }
             if (choice == 1) {
                 //yeet1
-                JOptionPane.showMessageDialog(null, "YEET1");
+                EncoderContext context = new EncoderContext(new CeasarEncoder());
+                JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
             } else if (choice == 2) {
                 //yeet2
                 JOptionPane.showMessageDialog(null, "YEET2");
