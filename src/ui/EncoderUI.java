@@ -12,7 +12,7 @@ public class EncoderUI {
 
         int choice = -1;
         while (choice != 0) {
-            String choiceString = JOptionPane.showInputDialog("Hoe wil je het versleutelen \n1.homo\n2.fiel");
+            String choiceString = JOptionPane.showInputDialog("Hoe wil je het versleutelen \n1.CaeserSalad\n2.MirrorView");
 
             if (choiceString == null) {
                 choice = 0;
