@@ -19,21 +19,37 @@ public class EncoderUI {
     //Keuze ding
     private static String KeuzeVerOfNiet() {
         int choice = -1;
-        while (choice != 0) {
-            String choiceString = JOptionPane.showInputDialog("\n1.Encode\n2.Decode");
+        Object[] code = {"Encode", "Decode"};
+        JPanel panel = new JPanel();
+//        JButton encode = new JButton("Encode");
+//        JButton decode = new JButton("Decode");
+//        panel.add(encode);
+//        panel.add(decode);
 
-            if (choiceString == null || choiceString.isEmpty()) {
-                continue;
+
+        while (choice != 0) {
+
+            JOptionPane option = new JOptionPane();
+            int result = JOptionPane.showOptionDialog(null, panel, "Encode or Decode?", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null, code, null);
+
+//            String choiceString = (String) option.get
+            System.out.println(result);
+
+//            if (choiceString == null || choiceString.isEmpty()) {
+//                continue;
+//            }
+//            try {
+//                choice = Integer.parseInt(choiceString);
+//            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(null, "Invalid menu choice: \"" + choiceString + "\", try again.");
+//                continue;
+//            }
+            if (result == -1) {
+                System.exit(0);
             }
-            try {
-                choice = Integer.parseInt(choiceString);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Invalid menu choice: \"" + choiceString + "\", try again.");
-                continue;
-            }
-            if (choice == 1) {
+            if (result == 0) {
                 return "encode";
-            } else if (choice == 2) {
+            } else if (result == 1) {
                 return "decode";
             }
 
@@ -44,9 +60,19 @@ public class EncoderUI {
 
     //Keuze ding voor versleutelingstype
     private static void keuzeversleutel(String toBeEncoded) {
-            int choice = -1;
+        int choice = -1;
+        String[] algo = {"Caesar", "Mirror"};
+        JComboBox algos = new JComboBox(algo);
             while (choice != 0) {
-                String choiceString = JOptionPane.showInputDialog("Op welke manier? \n1.CaeserSalad\n2.MirrorView");
+
+
+
+                JOptionPane option = new JOptionPane();
+                JOptionPane.showMessageDialog(null, algos, "select or type a value", JOptionPane.QUESTION_MESSAGE);
+//                option.add(algos);
+
+
+                String choiceString = (String) algos.getSelectedItem();
 
                 if (choiceString == null) {
                     choice = 0;
@@ -55,13 +81,9 @@ public class EncoderUI {
                 if (choiceString.isEmpty()) {
                     continue;
                 }
-                try {
-                    choice = Integer.parseInt(choiceString);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Invalid menu choice: \"" + choiceString + "\", try again.");
-                    continue;
-                }
-                if (choice == 1) {
+
+
+                if (choiceString.equals("Caesar")) {
                     //yeet1
                     EncoderContext context = new EncoderContext(new CeasarEncoder());
                     if (KeuzeVerOfNiet().equals("encode")) {
@@ -69,7 +91,7 @@ public class EncoderUI {
                     } else {
                         JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
                     }
-                } else if (choice == 2) {
+                } else if (choiceString.equals("Mirror")) {
                     //yeet2
                     EncoderContext context = new EncoderContext(new MirrorEncoder());
                     if (KeuzeVerOfNiet().equals("encode")) {
