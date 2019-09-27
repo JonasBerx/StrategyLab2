@@ -11,6 +11,11 @@ public class EncoderUI {
         //slaat string op in
         String toBeModified = JOptionPane.showInputDialog("Met welke zin/woord wil je iets doen?");
 
+        if (toBeModified.equals("Q")) {
+            System.exit(0);
+
+        }
+
         keuzeversleutel(toBeModified);
         //Vraag voor encode of decode
 
@@ -61,8 +66,8 @@ public class EncoderUI {
     //Keuze ding voor versleutelingstype
     private static void keuzeversleutel(String toBeEncoded) {
         int choice = -1;
-        String[] algo = {"Caesar", "Mirror"};
-        JComboBox algos = new JComboBox(algo);
+        String[] algo = {"Caesar", "Mirror","Quit"};
+        JComboBox<String> algos = new JComboBox<>(algo);
             while (choice != 0) {
 
 
@@ -75,12 +80,17 @@ public class EncoderUI {
                 String choiceString = (String) algos.getSelectedItem();
 
                 if (choiceString == null) {
-                    choice = 0;
                     continue;
                 }
-                if (choiceString.isEmpty()) {
-                    continue;
+//                if (choiceString.isEmpty()) {
+//                    continue;
+//                }
+
+                if (choiceString.equals("Quit")) {
+                    System.exit(0);
+
                 }
+
 
 
                 if (choiceString.equals("Caesar")) {
