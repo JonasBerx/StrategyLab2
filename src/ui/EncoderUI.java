@@ -3,6 +3,7 @@ package ui;
 import domain.CeasarEncoder;
 import domain.EncoderContext;
 import domain.MirrorEncoder;
+import domain.RandomCipherAdapter;
 
 import javax.swing.*;
 
@@ -31,7 +32,7 @@ public class EncoderUI {
 //        panel.add(decode);
 
 
-        while (choice != 0) {
+        while (true) {
 
             JOptionPane option = new JOptionPane();
             int result = JOptionPane.showOptionDialog(null, panel, "Encode or Decode?", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null, code, null);
@@ -58,16 +59,15 @@ public class EncoderUI {
             }
 
         }
-        return "";
     }
 
 
     //Keuze ding voor versleutelingstype
     private static void keuzeversleutel(String toBeEncoded) {
         int choice = -1;
-        String[] algo = {"Caesar", "Mirror","Quit"};
+        String[] algo = {"Caesar", "Mirror","Random","Quit"};
         JComboBox<String> algos = new JComboBox<>(algo);
-            while (choice != 0) {
+            while (true) {
 
 
 
@@ -91,22 +91,35 @@ public class EncoderUI {
                 }
 
 
-
-                if (choiceString.equals("Caesar")) {
-                    //yeet1
-                    EncoderContext context = new EncoderContext(new CeasarEncoder());
-                    if (KeuzeVerOfNiet().equals("encode")) {
-                        JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
-                    } else {
-                        JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
+                switch (choiceString) {
+                    case "Caesar": {
+                        //yeet1
+                        EncoderContext context = new EncoderContext(new CeasarEncoder());
+                        if (KeuzeVerOfNiet().equals("encode")) {
+                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
+                        } else {
+                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
+                        }
+                        break;
                     }
-                } else if (choiceString.equals("Mirror")) {
-                    //yeet2
-                    EncoderContext context = new EncoderContext(new MirrorEncoder());
-                    if (KeuzeVerOfNiet().equals("encode")) {
-                        JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
-                    } else {
-                        JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
+                    case "Mirror": {
+                        //yeet2
+                        EncoderContext context = new EncoderContext(new MirrorEncoder());
+                        if (KeuzeVerOfNiet().equals("encode")) {
+                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
+                        } else {
+                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
+                        }
+                        break;
+                    }
+                    case "Random": {
+                        EncoderContext context = new EncoderContext(new RandomCipherAdapter());
+                        if (KeuzeVerOfNiet().equals("encode")) {
+                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
+                        } else {
+                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
+                        }
+                        break;
                     }
                 }
 
