@@ -1,9 +1,6 @@
 package ui;
 
-import domain.CeasarEncoder;
-import domain.EncoderContext;
-import domain.MirrorEncoder;
-import domain.RandomCipherAdapter;
+import domain.*;
 
 import javax.swing.*;
 
@@ -65,7 +62,7 @@ public class EncoderUI {
     //Keuze ding voor versleutelingstype
     private static void keuzeversleutel(String toBeEncoded) {
         int choice = -1;
-        String[] algo = {"Caesar", "Mirror","Random","Quit"};
+        String[] algo = {"Caesar", "Mirror","Random","Secret","Quit"};
         JComboBox<String> algos = new JComboBox<>(algo);
             while (true) {
 
@@ -114,6 +111,15 @@ public class EncoderUI {
                     }
                     case "Random": {
                         EncoderContext context = new EncoderContext(new RandomCipherAdapter());
+                        if (KeuzeVerOfNiet().equals("encode")) {
+                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
+                        } else {
+                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
+                        }
+                        break;
+                    }
+                    case "Secret": {
+                        EncoderContext context = new EncoderContext(new SecretCode());
                         if (KeuzeVerOfNiet().equals("encode")) {
                             JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
                         } else {

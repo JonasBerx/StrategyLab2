@@ -1,5 +1,5 @@
 package domain;
 
 public enum EncoderEnum {
-    CEASERSALAD, MIRROR
+    CEASERSALAD, MIRROR, RANDOM, SECRET
 }

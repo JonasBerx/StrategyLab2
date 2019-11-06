@@ -1,9 +1,18 @@
 package domain;
 
-public class SecretCode {
-    private String text;
+public class SecretCode implements IEncoder {
 
-    public SecretCode(String text) {
-        this.text = text;
+
+
+
+    @Override
+    public String encode(String cleartext) {
+        return cleartext;
     }
+
+    @Override
+    public String decode(String ciphertext) {
+        return ciphertext;
+    }
+
 }
