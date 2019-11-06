@@ -5,7 +5,10 @@ import domain.*;
 import javax.swing.*;
 
 public class EncoderUI {
+    private EncoderContext encoder;
+
     public static void main(String[] args) {
+
         //slaat string op in
         String toBeModified = JOptionPane.showInputDialog("Met welke zin/woord wil je iets doen?");
 
@@ -91,7 +94,7 @@ public class EncoderUI {
                 switch (choiceString) {
                     case "Caesar": {
                         //yeet1
-                        EncoderContext context = new EncoderContext(new CeasarEncoder());
+                        EncoderContext context = new EncoderContext().setEncoder();
                         if (KeuzeVerOfNiet().equals("encode")) {
                             JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
                         } else {
@@ -110,7 +113,7 @@ public class EncoderUI {
                         break;
                     }
                     case "Random": {
-                        EncoderContext context = new EncoderContext(new RandomCipherAdapter());
+                        EncoderContext context = new EncoderContext().setEncoder(encoder);
                         if (KeuzeVerOfNiet().equals("encode")) {
                             JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
                         } else {
