@@ -1,18 +1,18 @@
 package domain;
 
 public enum EncoderEnum {
-    CEASERSALAD("CeasarEncoder"),
-    MIRROR("MirrorEncoder"),
-    RANDOM("RandomCipherAdapter"),
-    SECRET ("SecretCode");
+    CEASERSALAD(CeasarEncoder.class),
+    MIRROR(MirrorEncoder.class),
+    RANDOM(RandomCipherAdapter.class),
+    SECRET(SecretCode.class);
 
-    private final String className;
+    private final Class klas;
 
-    EncoderEnum(String className) {
-        this.className = className;
+    EncoderEnum(Class className) {
+        this.klas = className;
     }
 
-    public String getClassName() {
-        return className;
+    public Class getClassName() {
+        return klas;
     }
 }
