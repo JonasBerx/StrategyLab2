@@ -22,12 +22,8 @@ public class EncoderUIJavafx extends Application {
     @Override
     public void start(Stage primaryStage) {
         VBox root = new VBox();
-        Label label = new Label("Test");
-        ComboBox<String> encoderComboBox = new ComboBox<>(FXCollections.observableList(Arrays.asList(
-                "Ceasar",
-                "Mirror"
-        )));
-        root.getChildren().addAll(label, encoderComboBox);
+        Label label = new Label("reeeeeeee");
+        root.getChildren().addAll(label);
         Scene mainScene = new Scene(root, 250, 40);
         primaryStage.setScene(mainScene);
         primaryStage.show();

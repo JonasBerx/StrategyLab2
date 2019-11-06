@@ -13,7 +13,6 @@ public class EncoderUI {
 
         if (toBeModified.equals("Q")) {
             System.exit(0);
-
         }
 
         keuzeversleutel(toBeModified);
@@ -38,7 +37,7 @@ public class EncoderUI {
             int result = JOptionPane.showOptionDialog(null, panel, "Encode or Decode?", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null, code, null);
 
 //            String choiceString = (String) option.get
-            System.out.println(result);
+//            System.out.println(result);
 
 //            if (choiceString == null || choiceString.isEmpty()) {
 //                continue;
