@@ -2,22 +2,18 @@ package domain;
 
 public class EncoderFactory {
 
-    IEncoder encoder;
+//    IEncoder encoder;
 
-    public static IEncoder createObject(String type) {
-        if (type.equals(EncoderEnum.CEASERSALAD)) {
-            return new CeasarEncoder();
-        }
+    public IEncoder createObject(String type) {
         //Rest nog doen maar zonder if statements - reflection
 //        return null;
 
         EncoderEnum encoderEnum = EncoderEnum.valueOf(type);
-        String className = encoderEnum.getClassName();
+        Class className = encoderEnum.getClassName();
         IEncoder encoder = null;
 
         try {
-            Class encoderClass =Class.forName(className);
-            Object encoderObject = encoderClass.newInstance();
+            Object encoderObject = className.newInstance();
             encoder = (IEncoder) encoderObject;
 
         } catch (Exception e) {} //Silently fail

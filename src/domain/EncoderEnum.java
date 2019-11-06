@@ -1,7 +1,7 @@
 package domain;
 
 public enum EncoderEnum {
-    CEASERSALAD(CeasarEncoder.class),
+    CAESAR(CeasarEncoder.class),
     MIRROR(MirrorEncoder.class),
     RANDOM(RandomCipherAdapter.class),
     SECRET(SecretCode.class);

@@ -5,9 +5,10 @@ import domain.*;
 import javax.swing.*;
 
 public class EncoderUI {
-    private EncoderContext encoder;
+
 
     public static void main(String[] args) {
+
 
         //slaat string op in
         String toBeModified = JOptionPane.showInputDialog("Met welke zin/woord wil je iets doen?");
@@ -64,8 +65,10 @@ public class EncoderUI {
 
     //Keuze ding voor versleutelingstype
     private static void keuzeversleutel(String toBeEncoded) {
+        EncoderFactory factory = new EncoderFactory();
+        IEncoder encoder = null;
         int choice = -1;
-        String[] algo = {"Caesar", "Mirror","Random","Secret","Quit"};
+        String[] algo = {"CAESAR", "MIRROR","RANDOM","SECRET","Quit"};
         JComboBox<String> algos = new JComboBox<>(algo);
             while (true) {
 
@@ -91,45 +94,11 @@ public class EncoderUI {
                 }
 
 
-                switch (choiceString) {
-                    case "Caesar": {
-                        //yeet1
-                        EncoderContext context = new EncoderContext().setEncoder();
-                        if (KeuzeVerOfNiet().equals("encode")) {
-                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
-                        } else {
-                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
-                        }
-                        break;
-                    }
-                    case "Mirror": {
-                        //yeet2
-                        EncoderContext context = new EncoderContext(new MirrorEncoder());
-                        if (KeuzeVerOfNiet().equals("encode")) {
-                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
-                        } else {
-                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
-                        }
-                        break;
-                    }
-                    case "Random": {
-                        EncoderContext context = new EncoderContext().setEncoder(encoder);
-                        if (KeuzeVerOfNiet().equals("encode")) {
-                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
-                        } else {
-                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
-                        }
-                        break;
-                    }
-                    case "Secret": {
-                        EncoderContext context = new EncoderContext(new SecretCode());
-                        if (KeuzeVerOfNiet().equals("encode")) {
-                            JOptionPane.showMessageDialog(null, context.encode(toBeEncoded));
-                        } else {
-                            JOptionPane.showMessageDialog(null, context.decode(toBeEncoded));
-                        }
-                        break;
-                    }
+                encoder = factory.createObject(choiceString);
+                if (KeuzeVerOfNiet().equals("encode")) {
+                    JOptionPane.showMessageDialog(null, encoder.encode(toBeEncoded));
+                } else {
+                    JOptionPane.showMessageDialog(null, encoder.decode(toBeEncoded));
                 }
 
             }
