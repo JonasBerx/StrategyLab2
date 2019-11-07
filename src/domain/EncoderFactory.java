@@ -16,7 +16,9 @@ public class EncoderFactory {
             Object encoderObject = className.newInstance();
             encoder = (IEncoder) encoderObject;
 
-        } catch (Exception e) {} //Silently fail
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } //No more will i stay silent!!
         return encoder;
     }
 }
